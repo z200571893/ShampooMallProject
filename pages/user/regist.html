@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IrisHair會員註冊頁面</title>
+<link type="text/css" rel="stylesheet" href="../../static/css/style.css" >
+<script type="text/javascript" src="../../static/script/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#sub_btn").click(function(){
+			//用戶名驗證5~12位(字母、數字、底線組成)
+			var usernameText = $("#username").val();
+			var usernamePatt = /^\w{5,12}$/;
+			if (!usernamePatt.test(usernameText)) {
+				$("span.errorMsg").text("用戶名不符合規則!");
+				return false;
+			}
+			//密碼驗證
+			var passwordText = $("#password").val();
+			var passwordPatt = /^\w{5,12}$/;
+			if (!passwordPatt.test(passwordText)) {
+				$("span.errorMsg").text("密碼不符合規則!");
+				return false;
+			}
+			//確認密碼
+			var repwdText = $("#repwd").val();
+			if (repwdText != passwordText) {
+				$("span.errorMsg").text("確認密碼和密碼不一致!");
+				return false;
+			}
+			//郵箱驗證
+			var emailText = $("#email").val();
+			var emailPatt = /^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/;
+			if(!emailPatt.test(emailText)){
+				$("span.errorMsg").text("郵箱不符合規則!");
+				return false;
+			}
+			//驗證碼
+			var codeText = $("#code").val();
+			codeText = $.trim(codeText);
+			if(codeText == null || codeText == ""){
+				$("span.errorMsg").text("驗證碼不可為空!");
+				return false;
+			}
+			$("span.errorMsg").text("");
+
+		})
+
+	})
+</script>
+<style type="text/css">
+	.login_form{
+		height:420px;
+		margin-top: 25px;
+	}
+	
+</style>
+</head>
+<body>
+		<div id="login_header">
+			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
+		</div>
+		
+			<div class="login_banner">
+			
+				<div id="l_content">
+					<span class="login_word">歡迎</span>
+				</div>
+				
+				<div id="content">
+					<div class="login_form">
+						<div class="login_box">
+							<div class="tit">
+								<h1>註冊會員</h1>
+								<span class="errorMsg"></span>
+							</div>
+							<div class="form">
+								<form action="regist_success.html">
+									<label>用户名稱：</label>
+									<input class="itxt" type="text" placeholder="請输入用户名" autocomplete="off" tabindex="1" name="username" id="username" />
+									<br />
+									<br />
+									<label>用户密碼：</label>
+									<input class="itxt" type="password" placeholder="請输入密碼" autocomplete="off" tabindex="1" name="password" id="password" />
+									<br />
+									<br />
+									<label>確認密碼：</label>
+									<input class="itxt" type="password" placeholder="確認密碼" autocomplete="off" tabindex="1" name="repwd" id="repwd" />
+									<br />
+									<br />
+									<label>電子郵件：</label>
+									<input class="itxt" type="text" placeholder="請輸入郵箱地址" autocomplete="off" tabindex="1" name="email" id="email" />
+									<br />
+									<br />
+									<label>驗證碼：</label>
+									<input class="itxt" type="text" style="width: 150px;" id="code"/>
+									<img alt="" src="../../static/img/code.bmp" style="float: right; margin-right: 40px">									
+									<br />
+									<br />
+									<input type="submit" value="註冊" id="sub_btn" />
+									
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<div id="bottom">
+			<span>
+				IrisHair.Copyright &copy;2015
+			</span>
+		</div>
+</body>
+</html>
